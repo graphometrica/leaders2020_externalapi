@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      leakDetectionThreshold: 6000
+    initialization-mode: always
+  jpa:
+    show-sql: false
+server:
+  port: 8096
+---
+spring:
+  profiles: local
+  datasource:
+    username: ${SPRING_DATASOURCE_USERNAME:graph_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:graph}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/graphdb?currentSchema=animal_schema_new}
+---
+spring:
+  profiles: dev
+  datasource:
+    username: ${SPRING_DATASOURCE_USERNAME:graph}
+    password: ${SPRING_DATASOURCE_PASSWORD:graph}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://23.251.145.120:5432/animal?currentSchema=animal_schema_new}
+---
+
